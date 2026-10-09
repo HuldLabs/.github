@@ -22,9 +22,11 @@ Jinja pode consumir o design system e a camada de método sem adotar um framewor
   sync puxa só o declarado, com versão e hash travados num lock.
 - **Nada exige um runtime de quem não o usa.** Um repo só Python é caso de primeira classe; um repo
   só Node também. Cada item declara a stack que pede.
-- **Ferramenta transversal sai como binário único** — `tars` já é; `kipp` e `tars secrets` virão.
-  Quem consome não instala o runtime de outra stack.
-- **Segredos:** 1Password é a fonte; no dia a dia, cache sops + age; 1Password só no refresh.
+- **Ferramenta transversal sai como binário único** — `tars` já é, com `tars secrets` dentro; `kipp`
+  virá. Quem consome não instala o runtime de outra stack.
+- **Segredos:** 1Password é a fonte; no dia a dia, cache sops + age com chave por projeto;
+  1Password só no refresh. Cada comando declara se roda como automação (service account) ou como
+  dono, sem fallback entre os dois. O catálogo nunca guarda referência `op://`.
 - **Distribuição de pacotes no GitHub Packages privado**, escopo `@huldlabs`.
 
 ## Origem dos nomes
@@ -37,7 +39,8 @@ cada stack nova é uma partícula (PHP será *Phonon*). **Tars** e **Kipp** são
 
 ## Estado hoje
 
-- **Tars** — publicado, com binário e README.
+- **Tars** — publicado (`0.0.1-dev.9`), com binário, README e `tars secrets` (refresh, exec,
+  check, rotate).
 - **Kipp** — nasceu: README, ADR-0001, consome o Tars; ainda sem código.
 - **Sofon** e **Tomo** — em extração a partir do segtools.
 - **Pion** — nasce no seo-brain.
